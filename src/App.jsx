@@ -11,11 +11,19 @@ function App() {
   const [iva, setIva] = useState(0);
   const [total, setTotal] = useState(0);
 
+  //agregar productos
   const handleFormSubmit = (product) => {
     setProducts([...products, product]);
   };
 
+  //eliminación de productos
+  const handleDelete = (id) =>{
+    const newProducts = products.filter(product => product.productId !== id );
+    setProducts(newProducts);
+  };
+
   useEffect(() => {
+    //sumar la totalidad de precios, el iva y el total de ambos
     const newSubtotal = products.reduce((acc, product) => acc + product.unitValue * product.quantity, 0);
     const newIva = newSubtotal * 0.16;
     const newTotal = newSubtotal + newIva;
@@ -28,7 +36,7 @@ function App() {
   return (
     <>
       <BillForm onSubmit={handleFormSubmit} />
-      <ProductsTable products={products}/>
+      <ProductsTable products={products} handleDelete={handleDelete} />
       <Values subtotal={subtotal} iva={iva} total={total} />
     </>
   )

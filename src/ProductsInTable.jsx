@@ -1,13 +1,5 @@
-import { useState } from 'react';
 
-function ProductsInTable({ productId, description, unitValue, quantity }) {
-    const [isVisible, setIsVisible] = useState(true);
-
-    const toggleVisibility = () => {
-        setIsVisible(!isVisible);
-    };
-
-    if (!isVisible) return null;
+function ProductsInTable({ productId, description, unitValue, quantity,  ondelete}) {
 
     return (
         <tr>
@@ -16,7 +8,7 @@ function ProductsInTable({ productId, description, unitValue, quantity }) {
             <td>{unitValue}</td>
             <td>{quantity}</td>
             <td>{unitValue * quantity}</td>
-            <td><button onClick={toggleVisibility}>Eliminar</button></td>
+            <td><button onClick={() => ondelete(productId)}>Eliminar</button></td>
         </tr>
     );
 }

@@ -1,6 +1,6 @@
 import ProductsInTable from './ProductsInTable.jsx';
 
-function ProductsTable({ products }) {
+function ProductsTable({ products,handleDelete }) {
     return (
         <>
             <table className='table' >
@@ -22,6 +22,7 @@ function ProductsTable({ products }) {
                             description={product.description} 
                             unitValue={product.unitValue} 
                             quantity={product.quantity} 
+                            ondelete = { handleDelete}
                         />
                     ))}
                 </tbody>
